@@ -20,7 +20,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker Image
-      run: docker build -t yourusername/wordpress-org:latest .
+      run: docker build -t varuncoderise/wordpress-org:latest .
 
     - name: Push Docker Image to DockerHub
       run: docker push varuncoderise/wordpress-org:latest
