@@ -1,18 +1,25 @@
+version: '3'
 services:
   wordpress:
-    image: yourusername/wordpress-org:latest
+    image: varuncoderise/wordpress-org:latest
+    restart: always
     ports:
       - "8080:80"
     environment:
-      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
-
   db:
     image: mysql:5.7
+    restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_ROOT_PASSWORD: wordpress
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
+    volumes:
+      - wordpress-db-data:/var/lib/mysql
+volumes:
+  wordpress-db-data:
+
